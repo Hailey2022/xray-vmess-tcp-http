@@ -1,14 +1,17 @@
 {
+   "log":{
+      "loglevel":"warning"
+   },
    "inbounds":[
       {
-         "port":80,
+         "port":12345,
          "protocol":"vmess",
          "settings":{
             "clients":[
                {
-                  "id":"",
+                  "id":"9238a8df-5d8f-4316-b4c4-cda4ca3bb95e",
                   "level":1,
-                  "alterId":1
+                  "alterId":0
                }
             ]
          },
@@ -22,24 +25,56 @@
                      "status":"200",
                      "reason":"OK",
                      "headers":{
+                        "Content-encoding":[
+                           "gzip"
+                        ],
                         "Content-Type":[
-                           "application/octet-stream",
-                           "application/x-msdownload",
-                           "text/html",
-                           "application/x-shockwave-flash"
+                           "text/html; charset=utf-8"
                         ],
-                        "Transfer-Encoding":[
-                           "chunked"
+                        "Cache-Control":[
+                           "no-cache"
                         ],
-                        "Connection":[
-                           "keep-alive"
+                        "Vary":[
+                           "Accept-Encoding"
                         ],
-                        "Pragma":"no-cache"
+                        "X-Frame-Options":[
+                           "deny"
+                        ],
+                        "X-XSS-Protection":[
+                           "1; mode=block"
+                        ],
+                        "X-content-type-options":[
+                           "nosniff"
+                        ]
                      }
                   }
                }
             }
+         },
+         "sniffing":{
+            "enabled":true,
+            "destOverride":[
+               "http",
+               "tls"
+            ]
          }
       }
-   ]
+   ],
+   "outbounds":[
+      {
+         "protocol":"freedom",
+         "settings":{
+            "domainStrategy":"UseIP"
+         },
+         "tag":"direct"
+      }
+   ],
+   "dns":{
+      "servers":[
+         "https+local://8.8.8.8/dns-query",
+         "8.8.8.8",
+         "1.1.1.1",
+         "localhost"
+      ]
+   }
 }
